@@ -1,5 +1,5 @@
 class Order
-  attr_accessor(:code, :number)
+  attr_reader(:code, :number)
 
   def initialize(code:, number:)
     @code = code

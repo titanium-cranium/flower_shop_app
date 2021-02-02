@@ -7,5 +7,7 @@ task 'run' do
   require 'flower_shop_app'
 
   orders = File.readlines('data/orders.txt').map { |line| line.chomp.split(' ') }
-  result_json = FlowerShopApp.call(orders)
+  flowers = JSON.parse(File.read('data/flowers.json'))
+  result_json = FlowerShopApp.call(orders, flowers)
+  pp result_json
 end
