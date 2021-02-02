@@ -9,8 +9,8 @@ RSpec.describe 'integration' do
   let(:expected_result_json) {
     <<~JSON
       [
-        {"number":  10, "flower":  "R12", "total":  "$12.99", "bundles": {"number": 1, "size": 9 , "price": "$12.99" }},
-        {"number":  15, "flower":  "R12", "total":  "$12.99", "bundles": [{"number": 1, "size": 9, "price": "$24.95" }, {"number": 1, "size": 6 , "price": "$16.95" }]},
+        {"number":  10, "flower":  "R12", "total":  "$12.99", "bundles": {"number": 1, "size": 10 , "price": "$12.99" }},
+        {"number":  15, "flower":  "L09", "total":  "$41.90", "bundles": [{"number": 1, "size": 9, "price": "$24.95" }, {"number": 1, "size": 6 , "price": "$16.95" }]},
         {"number":  13, "flower":  "T58", "total":  "$25.85", "bundles": [{"number": 2, "size": 5, "price": "$9.95" }, {"number": 1, "size": 3 , "price": "$5.95" }]}
       ]
     JSON
