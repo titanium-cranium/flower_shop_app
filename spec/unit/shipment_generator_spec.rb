@@ -26,6 +26,30 @@ RSpec.describe ShipmentGenerator do
       end
     end
 
+    context "an order won't use all bunch sizes" do
+      let(:number) { 15 }
+      let(:sizes) { [9, 6, 3] }
+      let(:shipment) do
+        { shipment: [{ size: 9, bunches: 1 }, { size: 6, bunches: 1 }], remainder: 0 }
+      end
+
+      it 'filters out zero size bunches' do
+        expect(ShipmentGenerator.generate_shipment(number: number, sizes: sizes)).to eq(shipment)
+      end
+    end
+
+    context "sizes array is not in descending order" do
+      let(:number) { 15 }
+      let(:sizes) { [3, 9, 6] }
+      let(:shipment) do
+        { shipment: [{ size: 9, bunches: 1 }, { size: 6, bunches: 1 }], remainder: 0 }
+      end
+
+      it "sorts size array and processes order" do
+        expect(ShipmentGenerator.generate_shipment(number: number, sizes: sizes)).to eq(shipment)
+      end
+    end
+
     context 'an invalid order is submitted' do
       let(:number) { 19 }
       let(:sizes) { [10, 5] }

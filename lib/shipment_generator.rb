@@ -1,5 +1,6 @@
 class ShipmentGenerator
   def self.generate_shipment(number:, sizes:)
+    sizes = sizes.sort.reverse
     shipment = bunch_picker(number: number, sizes: sizes)
     invalid_order = shipment[:remainder] != 0
     while invalid_order
@@ -17,12 +18,11 @@ class ShipmentGenerator
   def self.bunch_picker(number:, sizes:)
     shipment = []
     remainder = 0
-    sizes = sizes.sort.reverse
 
     sizes.each do |size|
       bunches, remainder = number.divmod(size)
       bunch = { size: size, bunches: bunches }
-      shipment << bunch
+      shipment << bunch if bunch[:bunches].positive?
       number = remainder
     end
     { shipment: shipment, remainder: remainder }
