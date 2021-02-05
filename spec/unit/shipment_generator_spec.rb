@@ -56,7 +56,7 @@ RSpec.describe ShipmentGenerator do
       let(:message) { 'Order for 19 cannot be fulfilled' }
 
       it 'returns an error message' do
-        expect(ShipmentGenerator.generate_shipment(number: number, sizes: sizes)).to eq(message)
+        expect {ShipmentGenerator.generate_shipment(number: number, sizes: sizes) }.to raise_error(ShipmentGenerator::InvalidOrderError)
       end
     end
   end

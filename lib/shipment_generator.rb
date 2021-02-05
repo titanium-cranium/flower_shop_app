@@ -6,8 +6,8 @@ class ShipmentGenerator
     while invalid_order
       sizes.shift
       if sizes.empty?
-        shipment = "Order for #{number} cannot be fulfilled"
-        break
+        puts "Order for #{number} cannot be fulfilled"
+        raise InvalidOrderError
       end
       shipment = bunch_picker(number: number, sizes: sizes)
       invalid_order = shipment[:remainder] != 0
@@ -18,7 +18,6 @@ class ShipmentGenerator
   def self.bunch_picker(number:, sizes:)
     shipment = []
     remainder = 0
-
     sizes.each do |size|
       bunches, remainder = number.divmod(size)
       bunch = { size: size, bunches: bunches }
@@ -27,4 +26,6 @@ class ShipmentGenerator
     end
     { shipment: shipment, remainder: remainder }
   end
+
+  class InvalidOrderError < StandardError; end
 end
