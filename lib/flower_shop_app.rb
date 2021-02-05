@@ -7,8 +7,6 @@ class FlowerShopApp
   def self.call(orders, flowers)
     Money.locale_backend = nil
     Money.rounding_mode=BigDecimal::ROUND_HALF_UP
-    # orders = orders.map { |order| Order.new(number: order[0], code: order[1]) }
-    # flowers = flowers.map { |flower| Flower.new(name: flower['name'], code: flower['code'], bundles: flower['bundles']) }
     process_orders(orders, flowers)
   end
 
